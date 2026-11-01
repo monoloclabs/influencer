@@ -20,7 +20,7 @@ function Page() {
             <div key={r} className="grid grid-cols-[1fr_5rem_5rem] items-center border-t border-border px-5 py-4 font-bold sm:grid-cols-[1fr_8rem_8rem]">
               {r}
               <X className="mx-auto h-5 w-5 text-destructive" strokeWidth={3} />
-              <Check className="mx-auto h-5 w-5 text-success" strokeWidth={3} />
+              <Check className="mx-auto h-5 w-5 text-tint-green-foreground" strokeWidth={3} />
             </div>
           ))}
         </div>

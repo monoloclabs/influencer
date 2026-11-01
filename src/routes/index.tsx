@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
 const cta = "inline-flex h-16 w-full max-w-md items-center justify-center gap-3 rounded-full text-lg font-bold active:scale-[0.98]";
 const sectionHead = "mx-auto max-w-3xl text-center text-[clamp(2.75rem,8vw,5.5rem)] leading-[0.92] font-extrabold tracking-tight";
 const sectionCopy = "mx-auto mt-6 max-w-2xl text-center text-lg leading-relaxed sm:text-xl";
-const sections = [["how-it-works", "How it works"], ["creators", "For creators"], ["brands", "For brands"], ["platform", "Why us"], ["questions", "Questions"]] as const;
+
 
 function Homepage() {
   const [contact, setContact] = useState(false);
