@@ -7,6 +7,7 @@ import { SocialHandlesField } from "@/components/influencer/SocialHandlesField";
 import { InfluencerMark } from "@/components/alfred/InfluencerMark";
 import { BrandMark, PlatformMark } from "@/components/influencer/Marks";
 import { Sheet, SheetClose, SheetContent, SheetTitle } from "@/components/ui/sheet";
+import { marketingPages } from "@/components/marketing/MarketingPage";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({
@@ -190,8 +191,8 @@ function Homepage() {
             <SheetClose aria-label="Close menu" className="grid h-9 w-9 place-items-center rounded-full bg-primary-foreground/15 active:scale-95"><X className="h-4 w-4" strokeWidth={3} /></SheetClose>
           </div>
           <nav className="mt-10 flex flex-col gap-1">
-            {sections.map(([id, label]) => (
-              <button key={id} onClick={() => go(id)} className="flex items-center justify-between rounded-2xl px-2 py-3 text-left text-2xl font-extrabold active:bg-primary-foreground/10">{label}<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></button>
+            {marketingPages.map((p) => (
+              <Link key={p.to} to={p.to} onClick={() => setMenu(false)} className="flex items-center justify-between rounded-2xl px-2 py-3 text-left text-2xl font-extrabold active:bg-primary-foreground/10">{p.label}<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></Link>
             ))}
             <button onClick={() => { setMenu(false); setPartner(true); }} className="mt-2 flex items-center justify-between rounded-2xl bg-home-lime px-4 py-3 text-left text-2xl font-extrabold text-home-ink">Partnerships<Handshake className="h-6 w-6" strokeWidth={2.6} /></button>
           </nav>

@@ -16,15 +16,20 @@ import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as ForBrandsRouteImport } from './routes/for-brands'
+import { Route as ForCreatorsRouteImport } from './routes/for-creators'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as OfficeRouteImport } from './routes/office'
 import { Route as PlansRouteImport } from './routes/plans'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as SubscriptionRouteImport } from './routes/subscription'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as TimelineRouteImport } from './routes/timeline'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as WelcomeRouteImport } from './routes/welcome'
+import { Route as WhyUsRouteImport } from './routes/why-us'
 import { Route as ASlugRouteImport } from './routes/a.$slug'
 import { Route as ACalendarRouteImport } from './routes/a.calendar'
 import { Route as ACliqueRouteImport } from './routes/a.clique'
@@ -90,6 +95,21 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForBrandsRoute = ForBrandsRouteImport.update({
+  id: '/for-brands',
+  path: '/for-brands',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForCreatorsRoute = ForCreatorsRouteImport.update({
+  id: '/for-creators',
+  path: '/for-creators',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InstructionsRoute = InstructionsRouteImport.update({
   id: '/instructions',
   path: '/instructions',
@@ -108,6 +128,11 @@ const OfficeRoute = OfficeRouteImport.update({
 const PlansRoute = PlansRouteImport.update({
   id: '/plans',
   path: '/plans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SubscriptionRoute = SubscriptionRouteImport.update({
@@ -133,6 +158,11 @@ const WalletRoute = WalletRouteImport.update({
 const WelcomeRoute = WelcomeRouteImport.update({
   id: '/welcome',
   path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhyUsRoute = WhyUsRouteImport.update({
+  id: '/why-us',
+  path: '/why-us',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ASlugRoute = ASlugRouteImport.update({
@@ -289,15 +319,20 @@ export interface FileRoutesByFullPath {
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/events': typeof EventsRoute
+  '/for-brands': typeof ForBrandsRoute
+  '/for-creators': typeof ForCreatorsRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/instructions': typeof InstructionsRoute
   '/messages': typeof MessagesRoute
   '/office': typeof OfficeRouteWithChildren
   '/plans': typeof PlansRoute
+  '/pricing': typeof PricingRoute
   '/subscription': typeof SubscriptionRoute
   '/tasks': typeof TasksRoute
   '/timeline': typeof TimelineRoute
   '/wallet': typeof WalletRouteWithChildren
   '/welcome': typeof WelcomeRoute
+  '/why-us': typeof WhyUsRoute
   '/a/$slug': typeof ASlugRoute
   '/a/calendar': typeof ACalendarRoute
   '/a/clique': typeof ACliqueRoute
@@ -336,13 +371,18 @@ export interface FileRoutesByTo {
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/events': typeof EventsRoute
+  '/for-brands': typeof ForBrandsRoute
+  '/for-creators': typeof ForCreatorsRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/instructions': typeof InstructionsRoute
   '/messages': typeof MessagesRoute
   '/plans': typeof PlansRoute
+  '/pricing': typeof PricingRoute
   '/subscription': typeof SubscriptionRoute
   '/tasks': typeof TasksRoute
   '/timeline': typeof TimelineRoute
   '/welcome': typeof WelcomeRoute
+  '/why-us': typeof WhyUsRoute
   '/a/$slug': typeof ASlugRoute
   '/a/calendar': typeof ACalendarRoute
   '/a/clique': typeof ACliqueRoute
@@ -382,15 +422,20 @@ export interface FileRoutesById {
   '/create': typeof CreateRoute
   '/dashboard': typeof DashboardRoute
   '/events': typeof EventsRoute
+  '/for-brands': typeof ForBrandsRoute
+  '/for-creators': typeof ForCreatorsRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/instructions': typeof InstructionsRoute
   '/messages': typeof MessagesRoute
   '/office': typeof OfficeRouteWithChildren
   '/plans': typeof PlansRoute
+  '/pricing': typeof PricingRoute
   '/subscription': typeof SubscriptionRoute
   '/tasks': typeof TasksRoute
   '/timeline': typeof TimelineRoute
   '/wallet': typeof WalletRouteWithChildren
   '/welcome': typeof WelcomeRoute
+  '/why-us': typeof WhyUsRoute
   '/a/$slug': typeof ASlugRoute
   '/a/calendar': typeof ACalendarRoute
   '/a/clique': typeof ACliqueRoute
@@ -431,15 +476,20 @@ export interface FileRouteTypes {
     | '/create'
     | '/dashboard'
     | '/events'
+    | '/for-brands'
+    | '/for-creators'
+    | '/how-it-works'
     | '/instructions'
     | '/messages'
     | '/office'
     | '/plans'
+    | '/pricing'
     | '/subscription'
     | '/tasks'
     | '/timeline'
     | '/wallet'
     | '/welcome'
+    | '/why-us'
     | '/a/$slug'
     | '/a/calendar'
     | '/a/clique'
@@ -478,13 +528,18 @@ export interface FileRouteTypes {
     | '/create'
     | '/dashboard'
     | '/events'
+    | '/for-brands'
+    | '/for-creators'
+    | '/how-it-works'
     | '/instructions'
     | '/messages'
     | '/plans'
+    | '/pricing'
     | '/subscription'
     | '/tasks'
     | '/timeline'
     | '/welcome'
+    | '/why-us'
     | '/a/$slug'
     | '/a/calendar'
     | '/a/clique'
@@ -523,15 +578,20 @@ export interface FileRouteTypes {
     | '/create'
     | '/dashboard'
     | '/events'
+    | '/for-brands'
+    | '/for-creators'
+    | '/how-it-works'
     | '/instructions'
     | '/messages'
     | '/office'
     | '/plans'
+    | '/pricing'
     | '/subscription'
     | '/tasks'
     | '/timeline'
     | '/wallet'
     | '/welcome'
+    | '/why-us'
     | '/a/$slug'
     | '/a/calendar'
     | '/a/clique'
@@ -571,15 +631,20 @@ export interface RootRouteChildren {
   CreateRoute: typeof CreateRoute
   DashboardRoute: typeof DashboardRoute
   EventsRoute: typeof EventsRoute
+  ForBrandsRoute: typeof ForBrandsRoute
+  ForCreatorsRoute: typeof ForCreatorsRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   InstructionsRoute: typeof InstructionsRoute
   MessagesRoute: typeof MessagesRoute
   OfficeRoute: typeof OfficeRouteWithChildren
   PlansRoute: typeof PlansRoute
+  PricingRoute: typeof PricingRoute
   SubscriptionRoute: typeof SubscriptionRoute
   TasksRoute: typeof TasksRoute
   TimelineRoute: typeof TimelineRoute
   WalletRoute: typeof WalletRouteWithChildren
   WelcomeRoute: typeof WelcomeRoute
+  WhyUsRoute: typeof WhyUsRoute
   ASlugRoute: typeof ASlugRoute
   ACalendarRoute: typeof ACalendarRoute
   ACliqueRoute: typeof ACliqueRoute
@@ -655,6 +720,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for-brands': {
+      id: '/for-brands'
+      path: '/for-brands'
+      fullPath: '/for-brands'
+      preLoaderRoute: typeof ForBrandsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-creators': {
+      id: '/for-creators'
+      path: '/for-creators'
+      fullPath: '/for-creators'
+      preLoaderRoute: typeof ForCreatorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/instructions': {
       id: '/instructions'
       path: '/instructions'
@@ -681,6 +767,13 @@ declare module '@tanstack/react-router' {
       path: '/plans'
       fullPath: '/plans'
       preLoaderRoute: typeof PlansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/subscription': {
@@ -716,6 +809,13 @@ declare module '@tanstack/react-router' {
       path: '/welcome'
       fullPath: '/welcome'
       preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/why-us': {
+      id: '/why-us'
+      path: '/why-us'
+      fullPath: '/why-us'
+      preLoaderRoute: typeof WhyUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/a/$slug': {
@@ -964,15 +1064,20 @@ const rootRouteChildren: RootRouteChildren = {
   CreateRoute: CreateRoute,
   DashboardRoute: DashboardRoute,
   EventsRoute: EventsRoute,
+  ForBrandsRoute: ForBrandsRoute,
+  ForCreatorsRoute: ForCreatorsRoute,
+  HowItWorksRoute: HowItWorksRoute,
   InstructionsRoute: InstructionsRoute,
   MessagesRoute: MessagesRoute,
   OfficeRoute: OfficeRouteWithChildren,
   PlansRoute: PlansRoute,
+  PricingRoute: PricingRoute,
   SubscriptionRoute: SubscriptionRoute,
   TasksRoute: TasksRoute,
   TimelineRoute: TimelineRoute,
   WalletRoute: WalletRouteWithChildren,
   WelcomeRoute: WelcomeRoute,
+  WhyUsRoute: WhyUsRoute,
   ASlugRoute: ASlugRoute,
   ACalendarRoute: ACalendarRoute,
   ACliqueRoute: ACliqueRoute,
