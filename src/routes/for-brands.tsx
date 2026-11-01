@@ -12,7 +12,7 @@ function Page() {
     <MarketingShell tone={{ bg: "bg-home-yellow", text: "text-home-forest", accent: "", muted: "" }}>
       <Hero eyebrow="For brands" title={<>Reach that<br />actually <span className="text-primary">moves.</span></>} copy="Post one brief and get creators whose audiences match your customers. Approve every post before it goes live, pay only on approved milestones, and see spend and reach as it happens.">
         <div className="grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
-          {[["TikTok", "8M views"], ["Instagram", "3.2M reach"], ["YouTube", "1.4M views"], ["X", "640K impressions"]].map(([p, v]) => (
+          {([["TikTok", "8M views"], ["Instagram", "3.2M reach"], ["YouTube", "1.4M views"], ["X", "640K impressions"]] as const).map(([p, v]) => (
             <div key={p} className="rounded-[2rem] bg-home-forest p-5 text-primary-foreground"><PlatformMark platform={p} className="h-7 w-7 text-primary-foreground" /><p className="mt-5 text-xl font-extrabold">{v}</p><p className="text-sm opacity-70">{p}</p></div>
           ))}
         </div>

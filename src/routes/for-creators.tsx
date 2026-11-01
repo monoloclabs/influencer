@@ -12,7 +12,7 @@ function Page() {
     <MarketingShell tone={{ bg: "bg-home-magenta", text: "text-primary-foreground", accent: "", muted: "" }}>
       <Hero eyebrow="For creators" title={<>Your audience<br />is a business.<br /><span className="text-home-lime">Run it like one.</span></>} copy="Stop juggling DMs, spreadsheets and late invoices. Get offers with the fee on the table, deliver in one workspace, and watch money land the day your work is approved.">
         <div className="grid max-w-3xl grid-cols-2 gap-3 text-home-ink sm:grid-cols-3">
-          {[["Spotify", "$12,000", "Offer"], ["Gymshark", "$4,250", "Paid"], ["Sephora", "$6,800", "In review"]].map(([b, v, s]) => (
+          {([["Spotify", "$12,000", "Offer"], ["Gymshark", "$4,250", "Paid"], ["Sephora", "$6,800", "In review"]] as const).map(([b, v, s]) => (
             <div key={b} className="rounded-[2rem] bg-card p-5 shadow-card"><BrandMark brand={b} className="h-8 w-8" /><p className="mt-5 text-2xl font-extrabold">{v}</p><p className="text-sm font-bold opacity-60">{b} · {s}</p></div>
           ))}
         </div>
