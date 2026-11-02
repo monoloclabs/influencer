@@ -1,40 +1,58 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PlatformMark } from "@/components/influencer/Marks";
-import { Band, CardGrid, ClosingCta, Faq, Hero, MarketingShell, Stats, meta } from "@/components/marketing/MarketingPage";
+import { BadgeCheck, BarChart3, Filter, Megaphone, ShieldCheck, Target, Users } from "lucide-react";
+import { ClosingCta, Faq, MarketingShell, meta } from "@/components/marketing/MarketingPage";
+import { DeviceSlot, FilterStage, Section, StepList } from "@/components/marketing/MarketingKit";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/for-brands")({
-  head: () => meta("For brands, reach the people who matter", "Post a brief, get matched with fitting creators, approve work and track spend and results live."),
+  head: () => meta("INFLUENCER for brands: reach the people who matter", "Post a brief, get matched with creators, approve deliverables and pay through escrow on verified milestones."),
   component: Page,
 });
 
 function Page() {
   return (
-    <MarketingShell tone={{ bg: "bg-home-yellow", text: "text-home-forest", accent: "", muted: "" }}>
-      <Hero eyebrow="For brands" title={<>Reach that<br />actually <span className="text-primary">moves.</span></>} copy="Post one brief and get creators whose audiences match your customers. Approve every post before it goes live, pay only on approved milestones, and see spend and reach as it happens.">
-        <div className="grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
-          {([["TikTok", "8M views"], ["Instagram", "3.2M reach"], ["YouTube", "1.4M views"], ["X", "640K impressions"]] as const).map(([p, v]) => (
-            <div key={p} className="rounded-[2rem] bg-home-forest p-5 text-primary-foreground"><PlatformMark platform={p} className="h-7 w-7 text-primary-foreground" /><p className="mt-5 text-xl font-extrabold">{v}</p><p className="text-sm opacity-70">{p}</p></div>
-          ))}
+    <MarketingShell tone={{ bg: "bg-background", text: "text-home-ink", accent: "", muted: "" }}>
+      <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-16 sm:px-8">
+        <p className="text-sm font-bold uppercase tracking-[0.16em] text-home-blue">For brands</p>
+        <h1 className="mt-4 text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.95] font-extrabold">Reach the people who matter to your brand.</h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed opacity-75">Your team posts briefs on mobile. Marketing leads get the full picture on desktop.</p>
+        <div className="mt-8 flex gap-3">
+          <Link to="/pricing" className="inline-flex h-12 items-center rounded-full bg-home-blue px-6 font-bold text-primary-foreground">Brand plans</Link>
+          <Link to="/welcome" className="inline-flex h-12 items-center rounded-full bg-home-sky px-6 font-bold">Post a brief</Link>
         </div>
-      </Hero>
-      <Band className="bg-home-forest text-primary-foreground" title="From brief to results, in one place">
-        <CardGrid card="bg-primary-foreground/10" items={[
-          ["Smart briefs", "Set goal, budget, audience and deliverables once. Reuse templates for repeat campaigns."],
-          ["Fit-first matching", "Creators ranked on audience overlap, past delivery and engagement, with full media kits."],
-          ["Approval queue", "Inspect drafts, request changes or approve. Nothing goes live without sign off."],
-          ["Live spend tracking", "Budget, committed and released money per campaign, updated as milestones clear."],
-          ["Creator network", "Favorite creators you love, blacklist poor fits and rebook in one tap."],
-          ["Standing rules", "Auto decline low budgets, auto approve deliverables that meet your conditions."],
+        <div className="mt-12 rounded-[2rem] bg-home-sand p-6 sm:p-10"><DeviceSlot kind="laptop" label="Laptop: Brand dashboard" /></div>
+      </section>
+
+      <Section className="bg-home-sand" title="From brief to live in minutes">
+        <StepList items={[
+          [Megaphone, "Brief", "Set budget, niche, platforms and deliverables."],
+          [Target, "Match", "Get creators who fit your audience and rate."],
+          [BadgeCheck, "Approve", "Inspect every draft before it goes live."],
+          [ShieldCheck, "Release", "Escrow pays out only on verified milestones."],
         ]} />
-      </Band>
-      <Band className="bg-background text-home-ink" title="Why brands switch">
-        <Stats items={[["24", "Creators matched per brief", "bg-home-yellow"], ["92%", "Approved first pass", "bg-home-sky"], ["$0", "Paid for unapproved work", "bg-home-pink"], ["1", "Dashboard for all campaigns", "bg-home-lime"]]} />
-        <p className="mt-4 text-sm opacity-60">Illustrative figures for this prototype.</p>
-      </Band>
-      <Band className="bg-home-yellow" title="Brand questions">
-        <Faq border="border-home-forest/25" items={[["How fast can a campaign go live?", "Matches usually arrive within a day; live depends on your approval speed."], ["What if a creator underdelivers?", "Unapproved milestones stay in escrow and can be returned to you."], ["Can agencies manage several brands?", "Yes, through an agency partnership. Use the Partnerships form on the homepage."]]} />
-      </Band>
-      <ClosingCta className="bg-home-forest text-primary-foreground" button="bg-home-yellow text-home-forest" title="Post your first brief in minutes." />
+      </Section>
+
+      <Section className="bg-background" title="What marketing leads see">
+        <div className="divide-y divide-home-ink/15 border-y border-home-ink/15">
+          {[[BarChart3, "Live spend", "Budget used, committed and remaining, per campaign."], [Users, "Creator network", "Favourites, past results and a blacklist."], [Filter, "Standing rules", "Auto decline low budgets, flag off niche creators."]].map(([I, t, c]) => {
+            const Icon = I as typeof BarChart3;
+            return <div key={t as string} className="grid grid-cols-[48px_1fr] gap-4 py-7"><Icon className="h-8 w-8 text-home-blue" strokeWidth={2.2} /><div><h3 className="text-xl font-extrabold">{t as string}</h3><p className="mt-1 opacity-70">{c as string}</p></div></div>;
+          })}
+        </div>
+      </Section>
+
+      <Section className="bg-home-yellow" title="One stage, every workflow">
+        <FilterStage items={[
+          { pill: "Briefs", title: "Post a brief in minutes", copy: "A guided form with budget and deliverables.", points: ["Templates", "Platform targeting"], device: "phone", tint: "bg-background" },
+          { pill: "Approvals", title: "A queue, not a pile", copy: "Drafts waiting on you, in order.", points: ["Approve or inspect", "Comments stay on record"], device: "laptop", tint: "bg-home-sky" },
+          { pill: "Timeline", title: "Every payment, clearly coloured", copy: "Outflows, refunds and pending payments.", points: ["Escrow status", "Export"], device: "phone-half", tint: "bg-home-sage" },
+        ]} />
+      </Section>
+
+      <Section className="bg-background" title="Brand questions">
+        <Faq items={[["How fast can we launch?", "Most briefs go live the same day."], ["Are payments safe?", "Funds sit in escrow until you approve."], ["Agencies?", "Scale supports multiple brands and seats."]]} />
+      </Section>
+      <ClosingCta title="Post your first brief free." className="bg-home-blue text-primary-foreground" button="bg-home-yellow text-home-ink" />
     </MarketingShell>
   );
 }
