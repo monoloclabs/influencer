@@ -53,7 +53,7 @@ export type StageItem = { pill: string; title: string; copy: string; points: str
 
 export function FilterStage({ items, dark = false }: { items: StageItem[]; dark?: boolean }) {
   const [i, setI] = useState(0);
-  const it = items[i];
+  const it = items[i] ?? items[0]!;
   const go = (d: number) => setI((i + d + items.length) % items.length);
   const pillOn = dark ? "bg-primary-foreground text-home-ink" : "bg-home-ink text-primary-foreground";
   const pillOff = dark ? "bg-primary-foreground/10 text-primary-foreground" : "bg-home-ink/5 text-home-ink";
