@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { EscrowSpine, ArtifactCollage } from "@/components/marketing/MarketingArtifacts";
+import { Section } from "@/components/marketing/MarketingKit";
 import { Band, CardGrid, ClosingCta, Faq, Hero, MarketingShell, Stats, meta } from "@/components/marketing/MarketingPage";
 
 export const Route = createFileRoute("/how-it-works")({
@@ -29,6 +31,12 @@ function Page() {
           </div>
         ))}
       </section>
+      <Section className="bg-home-sand text-home-ink" eyebrow="The escrow spine" title="Tap a stage. See what actually lands on screen." copy="Every deal moves along the same five stages. Each one produces a real record, not a promise.">
+        <EscrowSpine />
+      </Section>
+      <Section className="bg-background text-home-ink" eyebrow="Proof, not claims" title="The receipts both sides keep." copy="Offers, escrow, approvals and payouts are artifacts you can open later, not messages lost in a chat.">
+        <ArtifactCollage />
+      </Section>
       <Band className="bg-home-ink text-primary-foreground" title="What each side sees" copy="Same deal, two views. Brands manage spend and approvals; creators manage work and income.">
         <CardGrid card="bg-primary-foreground/10" items={[
           ["Brand view", "Live campaign board, spend against budget, approval queue and creator performance per post.", "Brands"],
