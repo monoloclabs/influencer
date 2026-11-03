@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState } from "react";
 import { BadgeCheck, FileSignature, Inbox, Landmark, Lock, Send, Wallet, type LucideIcon } from "lucide-react";
 import { DeviceSlot } from "./MarketingKit";
@@ -81,7 +82,7 @@ export function ContractArtifact() {
 
 /* ---------- 5-stage escrow spine: tap a stage, see the real artifact ---------- */
 
-const stages: { icon: LucideIcon; name: string; who: string; copy: string; art: () => JSX.Element }[] = [
+const stages: { icon: LucideIcon; name: string; who: string; copy: string; art: () => React.ReactElement }[] = [
   { icon: Send, name: "Brief", who: "Brand", copy: "Budget, audience, platforms and usage rights in one form. Matching starts the moment it is posted.", art: ContractArtifact },
   { icon: Inbox, name: "Offer", who: "Creator", copy: "The full scope and fee arrive up front. Accept, counter or decline in one tap, no email chains.", art: OfferArtifact },
   { icon: Landmark, name: "Escrow", who: "Brand", copy: "Funds are locked before any work starts. The creator sees the money is real before filming.", art: EscrowArtifact },

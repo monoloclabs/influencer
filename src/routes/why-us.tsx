@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, X } from "lucide-react";
+import { ApprovalArtifact, ContractArtifact, EscrowArtifact } from "@/components/marketing/MarketingArtifacts";
 import { Band, CardGrid, ClosingCta, Hero, MarketingShell, meta } from "@/components/marketing/MarketingPage";
 
 export const Route = createFileRoute("/why-us")({
@@ -25,6 +26,12 @@ function Page() {
           ))}
         </div>
       </Band>
+      <section className="bg-home-sand px-5 pb-20 sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-[1100px] gap-5 md:grid-cols-[1.2fr_1fr] md:items-start">
+          <div className="space-y-5"><h2 className="text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-[0.98]">A directory gives you names. We give you records.</h2><ContractArtifact /></div>
+          <div className="space-y-5 md:pt-16"><EscrowArtifact /><ApprovalArtifact /></div>
+        </div>
+      </section>
       <Band className="bg-home-plum text-primary-foreground" title="Our principles">
         <CardGrid card="bg-primary-foreground/10" items={[
           ["Money is safe first", "Funds are held before work begins and released only on approval."],
