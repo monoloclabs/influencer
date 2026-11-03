@@ -13,36 +13,28 @@ const labels: Record<DeviceKind, string> = {
   screenshot: "App screenshot",
 };
 
-function Slot({ label }: { label: string }) {
+/* Dotted placeholders only (no drawn device bezels). Heights are capped so a
+   slot never stretches; inside a stage each slot fits the stage's fixed height. */
+function Slot({ label, className = "" }: { label: string; className?: string }) {
   return (
-    <div className="grid h-full w-full place-items-center rounded-[inherit] border-2 border-dashed border-home-ink/25 p-3 text-center">
-      <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-home-ink/40">{label}</span>
+    <div className={`grid place-items-center border-2 border-dashed border-current/30 p-3 text-center opacity-80 ${className}`}>
+      <span className="text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">{label}</span>
     </div>
   );
 }
 
 export function DeviceSlot({ kind = "phone", label, className = "" }: { kind?: DeviceKind; label?: string; className?: string }) {
   const text = label ?? labels[kind];
-  if (kind === "laptop") {
-    return (
-      <div className={`mx-auto w-full max-w-xl ${className}`}>
-        <div className="aspect-[16/10] rounded-t-2xl border-[6px] border-b-0 border-home-charcoal bg-background p-2">
-          <div className="h-full rounded-lg"><Slot label={text} /></div>
-        </div>
-        <div className="-mx-[5%] h-3 rounded-b-xl bg-home-charcoal" />
-      </div>
-    );
-  }
-  if (kind === "screenshot") {
-    return <div className={`aspect-[9/16] w-full max-w-[240px] rounded-3xl bg-background/70 p-1.5 ${className}`}><Slot label={text} /></div>;
-  }
-  const half = kind === "phone-half";
+  const box: Record<DeviceKind, string> = {
+    phone: "aspect-[9/16] h-[340px] rounded-[2rem]",
+    "phone-tilted": "aspect-[9/16] h-[340px] rounded-[2rem] -rotate-6",
+    "phone-half": "aspect-[9/16] h-[340px] rounded-t-[2rem] [mask-image:linear-gradient(to_bottom,black_70%,transparent)]",
+    screenshot: "aspect-[9/16] h-[340px] rounded-2xl",
+    laptop: "aspect-[16/10] w-full max-w-md rounded-xl",
+  };
   return (
-    <div className={`relative mx-auto w-full max-w-[240px] overflow-hidden ${half ? "aspect-[9/10]" : "aspect-[9/19]"} ${kind === "phone-tilted" ? "-rotate-6" : ""} ${className}`}>
-      <div className={`absolute inset-x-0 top-0 ${half ? "h-[190%]" : "h-full"} rounded-[2.6rem] border-[7px] border-home-charcoal bg-background p-1.5`}>
-        <div className="absolute left-1/2 top-2 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-home-charcoal" />
-        <div className="h-full rounded-[2rem]"><Slot label={text} /></div>
-      </div>
+    <div className={`mx-auto flex max-h-full max-w-full items-center justify-center ${className}`}>
+      <Slot label={text} className={`max-h-full max-w-full ${box[kind]}`} />
     </div>
   );
 }
@@ -75,7 +67,9 @@ export function FilterStage({ items, dark = false }: { items: StageItem[]; dark?
             <button aria-label="Next" onClick={() => go(1)} className="grid h-11 w-11 place-items-center rounded-full bg-home-ink text-primary-foreground"><ArrowRight className="h-5 w-5" strokeWidth={2.8} /></button>
           </div>
         </div>
-        <DeviceSlot kind={it.device} label={`${labels[it.device]}: ${it.pill}`} />
+        <div className="flex h-[280px] items-center justify-center overflow-hidden sm:h-[340px]">
+          <DeviceSlot kind={it.device} label={`${labels[it.device]}: ${it.pill}`} className="h-full" />
+        </div>
       </div>
     </div>
   );

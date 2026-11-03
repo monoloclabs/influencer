@@ -13,7 +13,7 @@ const rows = ["Matched on audience fit", "Escrow before work starts", "Approvals
 function Page() {
   return (
     <MarketingShell tone={{ bg: "bg-home-sand", text: "text-home-ink", accent: "", muted: "" }}>
-      <Hero eyebrow="Why us" title={<>One deal flow.<br /><span className="text-home-electric">Not a directory.</span></>} copy="Directories hand you a list of names and leave the hard part to you. We run the whole commercial workflow: match, contract, delivery, approval and payment." />
+      <Hero eyebrow="Why Influencer" title={<>One deal flow.<br /><span className="text-home-electric">Not a directory.</span></>} copy="Directories hand you a list of names and leave the hard part to you. We run the whole commercial workflow: match, contract, delivery, approval and payment." />
       <Band className="bg-card" title="Directory vs deal flow">
         <div className="overflow-hidden rounded-[2rem] border border-border">
           <div className="grid grid-cols-[1fr_5rem_5rem] bg-home-ink px-5 py-4 text-sm font-bold text-primary-foreground sm:grid-cols-[1fr_8rem_8rem]"><span /><span className="text-center">Directory</span><span className="text-center">Us</span></div>

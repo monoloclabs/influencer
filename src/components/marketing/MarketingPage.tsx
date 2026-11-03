@@ -10,7 +10,7 @@ export const marketingPages = [
   { to: "/how-it-works", label: "How it works" },
   { to: "/for-creators", label: "For creators" },
   { to: "/for-brands", label: "For brands" },
-  { to: "/why-us", label: "Why us" },
+  { to: "/why-us", label: "Why Influencer" },
   { to: "/pricing", label: "Pricing" },
 ] as const;
 
