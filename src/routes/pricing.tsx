@@ -204,7 +204,7 @@ function Page() {
 function PlanModal({ plan, onClose }: { plan: Plan | null; onClose: () => void }) {
   return (
     <Dialog open={!!plan} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="flex h-[88vh] max-w-lg flex-col gap-0 overflow-hidden rounded-[2rem] border-0 p-0 [&>button]:hidden">
+      <DialogContent className="bottom-0 top-auto left-0 flex h-[85dvh] max-h-[85dvh] w-full max-w-full translate-x-0 translate-y-0 flex-col gap-0 overflow-hidden rounded-t-[2.5rem] rounded-b-none border-0 p-0 sm:bottom-auto sm:top-[50%] sm:left-[50%] sm:h-[80dvh] sm:max-w-lg sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-[2rem] [&>button]:hidden">
         {plan && (
           <>
             <div className={`shrink-0 p-6 ${plan.bg} text-home-ink`}>
@@ -217,14 +217,14 @@ function PlanModal({ plan, onClose }: { plan: Plan | null; onClose: () => void }
               </div>
               <p className="mt-4 text-4xl font-extrabold">{plan.price}<span className="ml-2 text-base font-bold opacity-60">{plan.per}</span></p>
             </div>
-            <div className="flex-1 overflow-y-auto px-6 py-6 text-home-ink">
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-6 text-home-ink">
               <h3 className="text-xs font-bold uppercase tracking-[0.16em] opacity-50">Platform features</h3>
               <ul className="mt-4 space-y-4">{plan.platform.map(([I, t]) => <li key={t} className="flex items-center gap-4 font-semibold"><I className="h-5 w-5 shrink-0 text-primary" strokeWidth={2.4} />{t}</li>)}</ul>
               <h3 className="mt-9 text-xs font-bold uppercase tracking-[0.16em] opacity-50">AI features</h3>
               <ul className="mt-4 space-y-4">{plan.ai.map(([I, t]) => <li key={t} className="flex items-center gap-4 font-semibold"><I className="h-5 w-5 shrink-0 text-creator-violet" strokeWidth={2.4} />{t}</li>)}</ul>
               <p className="mt-9 rounded-2xl bg-home-sand p-4 text-sm leading-relaxed">Top up AI credits anytime for a fraction of your subscription cost.</p>
             </div>
-            <div className="shrink-0 border-t border-home-ink/10 p-5">
+            <div className="shrink-0 border-t border-home-ink/10 p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
               <Link to="/welcome" className="flex h-14 items-center justify-center gap-2 rounded-full bg-primary font-bold text-primary-foreground">{plan.cta} <ArrowRight className="h-5 w-5" strokeWidth={3} /></Link>
             </div>
           </>

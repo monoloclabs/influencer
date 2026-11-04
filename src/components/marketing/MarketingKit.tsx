@@ -56,19 +56,24 @@ export function FilterStage({ items, dark = false }: { items: StageItem[]; dark?
           <button key={s.pill} onClick={() => setI(k)} className={`h-10 shrink-0 rounded-full px-5 text-sm font-bold transition ${k === i ? pillOn : pillOff}`}>{s.pill}</button>
         ))}
       </div>
-      <div className={`mt-6 grid items-center gap-8 overflow-hidden rounded-[2rem] p-6 sm:p-10 md:grid-cols-2 ${it.tint} text-home-ink`}>
-        <div>
-          <p className="text-sm font-bold opacity-50">{String(i + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</p>
-          <h3 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">{it.title}</h3>
-          <p className="mt-4 text-lg leading-relaxed opacity-80">{it.copy}</p>
-          <ul className="mt-6 space-y-2">{it.points.map((p) => <li key={p} className="flex gap-3 font-semibold"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-home-ink" />{p}</li>)}</ul>
-          <div className="mt-8 flex gap-2">
-            <button aria-label="Previous" onClick={() => go(-1)} className="grid h-11 w-11 place-items-center rounded-full bg-home-ink text-primary-foreground"><ArrowLeft className="h-5 w-5" strokeWidth={2.8} /></button>
-            <button aria-label="Next" onClick={() => go(1)} className="grid h-11 w-11 place-items-center rounded-full bg-home-ink text-primary-foreground"><ArrowRight className="h-5 w-5" strokeWidth={2.8} /></button>
-          </div>
+      <div className={`mt-6 grid items-center gap-8 overflow-hidden rounded-[2rem] p-6 transition-colors sm:p-10 md:grid-cols-2 ${it.tint} text-home-ink`}>
+        {/* Every tab's copy is stacked in one cell; only the active one is visible, so height = tallest tab and never jumps. */}
+        <div className="grid">
+          {items.map((s, k) => (
+            <div key={s.pill} aria-hidden={k !== i} className={`col-start-1 row-start-1 ${k === i ? "visible" : "invisible"}`}>
+              <p className="text-sm font-bold opacity-50">{String(k + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</p>
+              <h3 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">{s.title}</h3>
+              <p className="mt-4 text-lg leading-relaxed opacity-80">{s.copy}</p>
+              <ul className="mt-6 space-y-2">{s.points.map((p) => <li key={p} className="flex gap-3 font-semibold"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-home-ink" />{p}</li>)}</ul>
+              <div className="mt-8 flex gap-2">
+                <button tabIndex={k === i ? 0 : -1} aria-label="Previous" onClick={() => go(-1)} className="grid h-11 w-11 place-items-center rounded-full bg-home-ink text-primary-foreground"><ArrowLeft className="h-5 w-5" strokeWidth={2.8} /></button>
+                <button tabIndex={k === i ? 0 : -1} aria-label="Next" onClick={() => go(1)} className="grid h-11 w-11 place-items-center rounded-full bg-home-ink text-primary-foreground"><ArrowRight className="h-5 w-5" strokeWidth={2.8} /></button>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="flex h-[280px] items-center justify-center overflow-hidden sm:h-[340px]">
-          <DeviceSlot kind={it.device} label={`${labels[it.device]}: ${it.pill}`} className="h-full" />
+        <div className="flex h-[280px] items-center justify-center overflow-hidden sm:h-[320px]">
+          <DeviceSlot kind={it.device} label={`${labels[it.device]}: ${it.pill}`} className="h-full w-full" />
         </div>
       </div>
     </div>
