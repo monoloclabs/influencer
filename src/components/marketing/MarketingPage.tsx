@@ -53,7 +53,7 @@ export function MarketingMenu({ open, onOpenChange, onPartner }: { open: boolean
           <SheetTitle className="flex items-center gap-2 text-base font-extrabold text-primary">INFLUENCER <InfluencerMark className="h-5 w-5 text-primary" /></SheetTitle>
           <SheetClose aria-label="Close menu" className="grid h-9 w-9 place-items-center rounded-full bg-primary-foreground/15"><X className="h-4 w-4" strokeWidth={3} /></SheetClose>
         </div>
-        <nav className="mt-10 flex flex-col gap-1">
+        <nav className="mt-10 -mx-2 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-2 pb-4">
           <Link to="/" onClick={() => onOpenChange(false)} className="flex items-center justify-between rounded-2xl px-2 py-3 text-2xl font-extrabold">Home<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></Link>
           {marketingPages.map((p) => (
             <Link key={p.to} to={p.to} onClick={() => onOpenChange(false)} activeProps={{ className: "text-home-lime" }} className="flex items-center justify-between rounded-2xl px-2 py-3 text-2xl font-extrabold">{p.label}<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></Link>
@@ -61,13 +61,13 @@ export function MarketingMenu({ open, onOpenChange, onPartner }: { open: boolean
           <FeaturesMenu onNavigate={() => onOpenChange(false)} />
           {onPartner && <button onClick={() => { onOpenChange(false); onPartner(); }} className="mt-2 rounded-2xl bg-home-lime px-4 py-3 text-left text-2xl font-extrabold text-home-ink">Partnerships</button>}
         </nav>
-        <Link to="/welcome" className="mt-auto inline-flex h-14 items-center justify-center gap-2 rounded-full bg-primary text-base font-bold text-primary-foreground">Get Started <ArrowRight className="h-5 w-5" strokeWidth={3} /></Link>
+        <Link to="/welcome" className="mt-auto inline-flex h-14 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-base font-bold text-primary-foreground">Get Started <ArrowRight className="h-5 w-5" strokeWidth={3} /></Link>
       </SheetContent>
     </Sheet>
   );
 }
 
-function FeaturesMenu({ onNavigate }: { onNavigate: () => void }) {
+export function FeaturesMenu({ onNavigate }: { onNavigate: () => void }) {
   const [open, setOpen] = useState(false);
   return (
     <div>
