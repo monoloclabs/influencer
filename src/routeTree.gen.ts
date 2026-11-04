@@ -50,6 +50,8 @@ import { Route as BrandInstructionsRouteImport } from './routes/brand.instructio
 import { Route as BrandIntegrationsRouteImport } from './routes/brand.integrations'
 import { Route as BrandNetworkRouteImport } from './routes/brand.network'
 import { Route as BrandTimelineRouteImport } from './routes/brand.timeline'
+import { Route as FeaturesIndexRouteImport } from './routes/features.index'
+import { Route as FeaturesSlugRouteImport } from './routes/features.$slug'
 import { Route as OfficeIndexRouteImport } from './routes/office.index'
 import { Route as OfficeSalariesRouteImport } from './routes/office.salaries'
 import { Route as OfficeStaffRouteImport } from './routes/office.staff'
@@ -265,6 +267,16 @@ const BrandTimelineRoute = BrandTimelineRouteImport.update({
   path: '/brand/timeline',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeaturesIndexRoute = FeaturesIndexRouteImport.update({
+  id: '/features/',
+  path: '/features/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesSlugRoute = FeaturesSlugRouteImport.update({
+  id: '/features/$slug',
+  path: '/features/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OfficeIndexRoute = OfficeIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -352,6 +364,7 @@ export interface FileRoutesByFullPath {
   '/brand/integrations': typeof BrandIntegrationsRoute
   '/brand/network': typeof BrandNetworkRoute
   '/brand/timeline': typeof BrandTimelineRoute
+  '/features/$slug': typeof FeaturesSlugRoute
   '/office/salaries': typeof OfficeSalariesRoute
   '/office/staff': typeof OfficeStaffRoute
   '/office/work': typeof OfficeWorkRoute
@@ -359,6 +372,7 @@ export interface FileRoutesByFullPath {
   '/wallet/approvals': typeof WalletApprovalsRoute
   '/wallet/transactions': typeof WalletTransactionsRoute
   '/brand/': typeof BrandIndexRoute
+  '/features/': typeof FeaturesIndexRoute
   '/office/': typeof OfficeIndexRoute
   '/wallet/': typeof WalletIndexRoute
   '/brand/campaign/$campaignId': typeof BrandCampaignCampaignIdRoute
@@ -402,6 +416,7 @@ export interface FileRoutesByTo {
   '/brand/integrations': typeof BrandIntegrationsRoute
   '/brand/network': typeof BrandNetworkRoute
   '/brand/timeline': typeof BrandTimelineRoute
+  '/features/$slug': typeof FeaturesSlugRoute
   '/office/salaries': typeof OfficeSalariesRoute
   '/office/staff': typeof OfficeStaffRoute
   '/office/work': typeof OfficeWorkRoute
@@ -409,6 +424,7 @@ export interface FileRoutesByTo {
   '/wallet/approvals': typeof WalletApprovalsRoute
   '/wallet/transactions': typeof WalletTransactionsRoute
   '/brand': typeof BrandIndexRoute
+  '/features': typeof FeaturesIndexRoute
   '/office': typeof OfficeIndexRoute
   '/wallet': typeof WalletIndexRoute
   '/brand/campaign/$campaignId': typeof BrandCampaignCampaignIdRoute
@@ -455,6 +471,7 @@ export interface FileRoutesById {
   '/brand/integrations': typeof BrandIntegrationsRoute
   '/brand/network': typeof BrandNetworkRoute
   '/brand/timeline': typeof BrandTimelineRoute
+  '/features/$slug': typeof FeaturesSlugRoute
   '/office/salaries': typeof OfficeSalariesRoute
   '/office/staff': typeof OfficeStaffRoute
   '/office/work': typeof OfficeWorkRoute
@@ -462,6 +479,7 @@ export interface FileRoutesById {
   '/wallet/approvals': typeof WalletApprovalsRoute
   '/wallet/transactions': typeof WalletTransactionsRoute
   '/brand/': typeof BrandIndexRoute
+  '/features/': typeof FeaturesIndexRoute
   '/office/': typeof OfficeIndexRoute
   '/wallet/': typeof WalletIndexRoute
   '/brand/campaign/$campaignId': typeof BrandCampaignCampaignIdRoute
@@ -509,6 +527,7 @@ export interface FileRouteTypes {
     | '/brand/integrations'
     | '/brand/network'
     | '/brand/timeline'
+    | '/features/$slug'
     | '/office/salaries'
     | '/office/staff'
     | '/office/work'
@@ -516,6 +535,7 @@ export interface FileRouteTypes {
     | '/wallet/approvals'
     | '/wallet/transactions'
     | '/brand/'
+    | '/features/'
     | '/office/'
     | '/wallet/'
     | '/brand/campaign/$campaignId'
@@ -559,6 +579,7 @@ export interface FileRouteTypes {
     | '/brand/integrations'
     | '/brand/network'
     | '/brand/timeline'
+    | '/features/$slug'
     | '/office/salaries'
     | '/office/staff'
     | '/office/work'
@@ -566,6 +587,7 @@ export interface FileRouteTypes {
     | '/wallet/approvals'
     | '/wallet/transactions'
     | '/brand'
+    | '/features'
     | '/office'
     | '/wallet'
     | '/brand/campaign/$campaignId'
@@ -611,6 +633,7 @@ export interface FileRouteTypes {
     | '/brand/integrations'
     | '/brand/network'
     | '/brand/timeline'
+    | '/features/$slug'
     | '/office/salaries'
     | '/office/staff'
     | '/office/work'
@@ -618,6 +641,7 @@ export interface FileRouteTypes {
     | '/wallet/approvals'
     | '/wallet/transactions'
     | '/brand/'
+    | '/features/'
     | '/office/'
     | '/wallet/'
     | '/brand/campaign/$campaignId'
@@ -664,8 +688,10 @@ export interface RootRouteChildren {
   BrandIntegrationsRoute: typeof BrandIntegrationsRoute
   BrandNetworkRoute: typeof BrandNetworkRoute
   BrandTimelineRoute: typeof BrandTimelineRoute
+  FeaturesSlugRoute: typeof FeaturesSlugRoute
   PlanPlanIdRoute: typeof PlanPlanIdRoute
   BrandIndexRoute: typeof BrandIndexRoute
+  FeaturesIndexRoute: typeof FeaturesIndexRoute
   BrandCampaignCampaignIdRoute: typeof BrandCampaignCampaignIdRoute
 }
 
@@ -958,6 +984,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandTimelineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/features/': {
+      id: '/features/'
+      path: '/features'
+      fullPath: '/features/'
+      preLoaderRoute: typeof FeaturesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features/$slug': {
+      id: '/features/$slug'
+      path: '/features/$slug'
+      fullPath: '/features/$slug'
+      preLoaderRoute: typeof FeaturesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/office/': {
       id: '/office/'
       path: '/'
@@ -1097,8 +1137,10 @@ const rootRouteChildren: RootRouteChildren = {
   BrandIntegrationsRoute: BrandIntegrationsRoute,
   BrandNetworkRoute: BrandNetworkRoute,
   BrandTimelineRoute: BrandTimelineRoute,
+  FeaturesSlugRoute: FeaturesSlugRoute,
   PlanPlanIdRoute: PlanPlanIdRoute,
   BrandIndexRoute: BrandIndexRoute,
+  FeaturesIndexRoute: FeaturesIndexRoute,
   BrandCampaignCampaignIdRoute: BrandCampaignCampaignIdRoute,
 }
 export const routeTree = rootRouteImport
