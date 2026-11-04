@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, Plus, X } from "lucide-react";
+import { features } from "./features";
 import { Link } from "@tanstack/react-router";
 import { InfluencerMark } from "@/components/alfred/InfluencerMark";
 import { PlatformMark } from "@/components/influencer/Marks";
@@ -57,11 +58,34 @@ export function MarketingMenu({ open, onOpenChange, onPartner }: { open: boolean
           {marketingPages.map((p) => (
             <Link key={p.to} to={p.to} onClick={() => onOpenChange(false)} activeProps={{ className: "text-home-lime" }} className="flex items-center justify-between rounded-2xl px-2 py-3 text-2xl font-extrabold">{p.label}<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></Link>
           ))}
+          <FeaturesMenu onNavigate={() => onOpenChange(false)} />
           {onPartner && <button onClick={() => { onOpenChange(false); onPartner(); }} className="mt-2 rounded-2xl bg-home-lime px-4 py-3 text-left text-2xl font-extrabold text-home-ink">Partnerships</button>}
         </nav>
         <Link to="/welcome" className="mt-auto inline-flex h-14 items-center justify-center gap-2 rounded-full bg-primary text-base font-bold text-primary-foreground">Get Started <ArrowRight className="h-5 w-5" strokeWidth={3} /></Link>
       </SheetContent>
     </Sheet>
+  );
+}
+
+function FeaturesMenu({ onNavigate }: { onNavigate: () => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button aria-expanded={open} onClick={() => setOpen((v) => !v)} className="flex w-full items-center justify-between rounded-2xl px-2 py-3 text-2xl font-extrabold">
+        Features<Plus className={`h-6 w-6 transition-transform ${open ? "rotate-45" : ""}`} strokeWidth={3} />
+      </button>
+      {open && (
+        <div className="mb-2 ml-2 flex flex-col border-l-2 border-primary-foreground/15 pl-4">
+          {features.map((f) => (
+            <Link key={f.slug} to="/features/$slug" params={{ slug: f.slug }} onClick={onNavigate} className="py-2">
+              <span className="block text-lg font-extrabold">{f.name}</span>
+              <span className="block text-sm text-primary-foreground/60">{f.short}</span>
+            </Link>
+          ))}
+          <Link to="/features" onClick={onNavigate} className="py-2 text-sm font-bold text-home-lime">All features</Link>
+        </div>
+      )}
+    </div>
   );
 }
 
