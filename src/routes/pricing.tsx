@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowRight, BadgeCheck, BarChart3, Bell, Bot, Briefcase, CalendarDays, Check, CircleDollarSign, Coins, FileSignature,
+  ArrowRight, BadgeCheck, BarChart3, Bell, Briefcase, CalendarDays, Check, CircleDollarSign, Coins, FileSignature,
   FileText, Filter, Globe, Handshake, Inbox, Layers, Lock, Megaphone, MessageSquare, Minus, Plug, Receipt, Search,
   ShieldCheck, Sparkles, Star, Target, Users, Wallet, X, Zap, type LucideIcon,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { RoundBot } from "@/components/marketing/RoundBot";
+const Bot = RoundBot as unknown as LucideIcon;
 import { Faq, MarketingShell, meta } from "@/components/marketing/MarketingPage";
 import { DeviceSlot, IconGrid, Section } from "@/components/marketing/MarketingKit";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -108,7 +110,7 @@ function Page() {
         </p>
         <div className="mt-8 inline-flex rounded-full bg-home-ink/5 p-1">
           {(["creator", "brand"] as Role[]).map((r) => (
-            <button key={r} onClick={() => setRole(r)} className={`h-11 rounded-full px-7 text-sm font-bold capitalize transition ${role === r ? "bg-home-ink text-primary-foreground" : ""}`}>{r === "creator" ? "Influencer" : "Brand"}</button>
+            <button key={r} onClick={() => setRole(r)} className={`h-11 rounded-full px-7 text-sm font-bold capitalize transition ${role === r ? "bg-home-ink text-primary-foreground" : ""}`}>{r === "creator" ? "Creators" : "Brands"}</button>
           ))}
         </div>
       </section>

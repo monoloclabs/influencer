@@ -137,10 +137,18 @@ function MediaKitScreen() {
           variant="primary"
           size="lg"
           className="col-span-2 w-full"
-          onClick={() => setCopied(true)}
+          onClick={async () => {
+            const url = typeof window !== "undefined" ? window.location.href : "";
+            const data = { title: "My INFLUENCER media kit", text: "My audience, results and rates.", url };
+            try {
+              if (navigator.share) { await navigator.share(data); return; }
+              await navigator.clipboard?.writeText(url);
+            } catch { /* user cancelled */ }
+            setCopied(true);
+          }}
         >
           {copied ? <Check className="h-4 w-4" strokeWidth={2.6} /> : <Link2 className="h-4 w-4" strokeWidth={2.4} />}
-          {copied ? "Link copied" : "Copy share link"}
+          {copied ? "Link copied" : "Share media kit"}
         </AButton>
       </div>
     </AppShell>

@@ -31,6 +31,20 @@ export function MarketingShell({ tone, children }: { tone: Tone; children: React
         </div>
       </header>
       <main>{children}</main>
+      <section className="px-5 py-16 sm:px-8">
+        <div className="mx-auto grid max-w-[1100px] gap-4 md:grid-cols-2">
+          <Link to="/welcome" className="flex min-h-[220px] flex-col justify-between rounded-[2rem] bg-home-lilac p-7 text-home-ink">
+            <span className="text-sm font-bold uppercase tracking-[0.14em]">Creators</span>
+            <span className="mt-8 text-2xl font-extrabold leading-tight">Run your business, deliver campaigns and get paid before you ever pay.</span>
+            <span className="mt-6 inline-flex items-center gap-2 font-bold">Start as a creator <ArrowRight className="h-4 w-4" strokeWidth={3} /></span>
+          </Link>
+          <Link to="/welcome" className="flex min-h-[220px] flex-col justify-between rounded-[2rem] bg-home-yellow p-7 text-home-ink">
+            <span className="text-sm font-bold uppercase tracking-[0.14em]">Brands</span>
+            <span className="mt-8 text-2xl font-extrabold leading-tight">Post briefs, lock escrow and review deliverables with zero chasing.</span>
+            <span className="mt-6 inline-flex items-center gap-2 font-bold">Start as a brand <ArrowRight className="h-4 w-4" strokeWidth={3} /></span>
+          </Link>
+        </div>
+      </section>
       <footer className="bg-home-charcoal px-6 py-14 text-primary-foreground sm:px-12">
         <div className="mx-auto max-w-[1440px]">
           <Link to="/" className="flex items-center gap-2 text-lg font-extrabold text-primary">INFLUENCER <InfluencerMark className="h-6 w-6 text-primary" /></Link>
@@ -55,10 +69,12 @@ export function MarketingMenu({ open, onOpenChange, onPartner }: { open: boolean
         </div>
         <nav className="mt-10 -mx-2 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-2 pb-4">
           <Link to="/" onClick={() => onOpenChange(false)} className="flex items-center justify-between rounded-2xl px-2 py-3 text-2xl font-extrabold">Home<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></Link>
-          {marketingPages.map((p) => (
-            <Link key={p.to} to={p.to} onClick={() => onOpenChange(false)} activeProps={{ className: "text-home-lime" }} className="flex items-center justify-between rounded-2xl px-2 py-3 text-2xl font-extrabold">{p.label}<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></Link>
+          {marketingPages.map((p, i) => (
+            <div key={p.to}>
+              <Link to={p.to} onClick={() => onOpenChange(false)} activeProps={{ className: "text-home-lime" }} className="flex items-center justify-between rounded-2xl px-2 py-3 text-2xl font-extrabold">{p.label}<ArrowRight className="h-5 w-5 opacity-50" strokeWidth={3} /></Link>
+              {i === 0 && <FeaturesMenu onNavigate={() => onOpenChange(false)} />}
+            </div>
           ))}
-          <FeaturesMenu onNavigate={() => onOpenChange(false)} />
           {onPartner && <button onClick={() => { onOpenChange(false); onPartner(); }} className="mt-2 rounded-2xl bg-home-lime px-4 py-3 text-left text-2xl font-extrabold text-home-ink">Partnerships</button>}
         </nav>
         <Link to="/welcome" className="mt-auto inline-flex h-14 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-base font-bold text-primary-foreground">Get Started <ArrowRight className="h-5 w-5" strokeWidth={3} /></Link>
