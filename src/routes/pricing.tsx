@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { RoundBot } from "@/components/marketing/RoundBot";
+const Bot = RoundBot as unknown as LucideIcon;
 import { Faq, MarketingShell, meta } from "@/components/marketing/MarketingPage";
 import { DeviceSlot, IconGrid, Section } from "@/components/marketing/MarketingKit";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -27,7 +28,7 @@ const included: Record<Role, [LucideIcon, string, string][]> = {
     [Wallet, "Wallet and escrow", "Funds held before you start work."],
     [CalendarDays, "Content calendar", "Shoots, drafts and post dates together."],
     [FileText, "Media kit", "A shareable kit with your rates."],
-    [RoundBot as unknown as LucideIcon, "AI Assistant", "Ask, draft and summarise, built in."],
+    [Bot, "AI Assistant", "Ask, draft and summarise, built in."],
   ],
   brand: [
     [Megaphone, "Post briefs", "Publish a brief in minutes."],
@@ -35,7 +36,7 @@ const included: Record<Role, [LucideIcon, string, string][]> = {
     [BadgeCheck, "Approval queue", "Inspect and approve every deliverable."],
     [ShieldCheck, "Escrow payouts", "Release funds on verified milestones."],
     [BarChart3, "Live spend", "Budget and results as they happen."],
-    [RoundBot as unknown as LucideIcon, "AI Assistant", "Price briefs and summarise spend."],
+    [Bot, "AI Assistant", "Price briefs and summarise spend."],
   ],
 };
 
@@ -43,18 +44,18 @@ const plans: Record<Role, Plan[]> = {
   creator: [
     { name: "Free", price: "$0", per: "forever", tag: "Get paid before you pay", bg: "bg-home-lilac", credits: "50 AI credits / month", cta: "Start free",
       platform: [[Inbox, "Unlimited brand offers"], [Layers, "Up to 3 live activations"], [Wallet, "Wallet with escrow protection"], [CalendarDays, "Content calendar"], [FileText, "Basic media kit"], [Plug, "2 integrations"]],
-      ai: [[RoundBot as unknown as LucideIcon, "AI Assistant"], [Sparkles, "Caption and reply drafts"], [Coins, "50 monthly AI credits"]] },
+      ai: [[Bot, "AI Assistant"], [Sparkles, "Caption and reply drafts"], [Coins, "50 monthly AI credits"]] },
     { name: "Pro", price: "$12", per: "per month", tag: "For full-time creators", bg: "bg-home-lime", credits: "600 AI credits / month", cta: "Upgrade to Pro", popular: true,
       platform: [[Check, "Everything in Free"], [Layers, "Unlimited activations"], [Search, "Rate research"], [Users, "Brand network 360"], [FileSignature, "Contracts and briefs library"], [Plug, "Unlimited integrations"], [Receipt, "Invoices and tax export"]],
-      ai: [[RoundBot as unknown as LucideIcon, "Priority AI Assistant"], [Filter, "Instructions and auto rules"], [MessageSquare, "Negotiation drafts"], [Coins, "600 monthly AI credits"]] },
+      ai: [[Bot, "Priority AI Assistant"], [Filter, "Instructions and auto rules"], [MessageSquare, "Negotiation drafts"], [Coins, "600 monthly AI credits"]] },
     { name: "Elite", price: "$29", per: "per month", tag: "For creators with a team", bg: "bg-home-sky", credits: "2,000 AI credits / month", cta: "Upgrade to Elite",
       platform: [[Check, "Everything in Pro"], [Briefcase, "My Office with team seats"], [Users, "Manager access"], [Star, "Featured in brand matching"], [Globe, "Custom media kit link"], [ShieldCheck, "Priority payout review"]],
-      ai: [[RoundBot as unknown as LucideIcon, "Assistant across your team"], [Zap, "Deal pricing suggestions"], [BarChart3, "Monthly income reports"], [Coins, "2,000 monthly AI credits"]] },
+      ai: [[Bot, "Assistant across your team"], [Zap, "Deal pricing suggestions"], [BarChart3, "Monthly income reports"], [Coins, "2,000 monthly AI credits"]] },
   ],
   brand: [
     { name: "Starter", price: "$0", per: "forever", tag: "Run your first campaign free", bg: "bg-home-yellow", credits: "50 AI credits / month", cta: "Start free",
       platform: [[Megaphone, "1 live brief at a time"], [Target, "Creator matching"], [BadgeCheck, "Approval queue"], [ShieldCheck, "Escrow payouts"], [CalendarDays, "Campaign calendar"]],
-      ai: [[RoundBot as unknown as LucideIcon, "AI Assistant"], [Sparkles, "Brief writing help"], [Coins, "50 monthly AI credits"]] },
+      ai: [[Bot, "AI Assistant"], [Sparkles, "Brief writing help"], [Coins, "50 monthly AI credits"]] },
     { name: "Growth", price: "$99", per: "per month", tag: "For teams running monthly", bg: "bg-home-sage", credits: "1,000 AI credits / month", cta: "Upgrade to Growth", popular: true,
       platform: [[Check, "Everything in Starter"], [Megaphone, "Unlimited briefs"], [Users, "Creator network with favourites"], [BarChart3, "Live spend tracking"], [FileText, "Files and documents"], [Plug, "Unlimited integrations"]],
       ai: [[Filter, "Instructions and auto rules"], [CircleDollarSign, "Brief pricing"], [MessageSquare, "Campaign message drafts"], [Coins, "1,000 monthly AI credits"]] },
