@@ -41,7 +41,7 @@ function Profile() {
       </div>
       <h3 className="mt-6 mb-3 flex items-center gap-2 font-extrabold"><Users className="h-4 w-4" strokeWidth={2.6} />Team</h3>
       <div className={`${card} divide-y divide-border py-1`}>
-        {[["Ama Okafor", "Owner"], ["Leo Grant", "Campaign manager"], ["Priya Shah", "Approver"]].map(([n, r]) => <Row key={n} label={n} value={r} />)}
+        {([["Ama Okafor", "Owner"], ["Leo Grant", "Campaign manager"], ["Priya Shah", "Approver"]] as const).map(([n, r]) => <Row key={n} label={n} value={r} />)}
       </div>
     </>
   );
